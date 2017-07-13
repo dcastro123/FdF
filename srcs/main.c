@@ -3,58 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastro- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 18:43:20 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/03 17:58:41 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/12 22:02:42 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx_macos/mlx.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "../includes/fdf.h"
 
-typedef struct	s_st
+// int	my_key_funct(int keycode, void *mlx)
+// {
+// 	printf("key event %d\n", keycode);
+// 	if (keycode == 53)
+// 		exit(0);
+// 	return (0);
+// }
+
+// t_point	init_pstruct(t_point *coord)
+// {
+// 	point->x1 = 0;
+// 	point->y1 = 0;
+// 	point->x2 = 0;
+// 	point->y2 = 0;
+// }
+
+// t_env	init_estruct(t_env *e)
+// {
+
+
+
+
+
+// }
+
+int	main(int ac, char **av)
 {
-	void	*mlx;
-	void	*win;
-	int		a;
-	int		b;
-}				t_st;
+	//t_env e;
 
-
-int	my_key_funct(int keycode, void *mlx, t_st *e)
-{
-	printf("key event %d\n", keycode);
-	if (keycode == 53)
-		exit(0);
-//	mlx_pixel_put(mlx, win, 1, 1, 0xFF00FF);
-	return (0);
-}
-
-int	my_mouse_funct(int button, int x, int y, t_st *e)
-{
-	printf("button event %d at [%d][%d]\n", button, x, y);
-	int i=x, j=y;
-	while(x++ < (i + 10))
+	// e.mlx = mlx_init();
+	// e.win = mlx_new_window(e.mlx, 600, 600, "mlx 42");
+	// init_pstruct(&coord);
+	// init_estruct(&e);
+	if (ac > 2)
 	{
-		y=j;
-		while(y++< j+10)
-			mlx_pixel_put(e->mlx, e->win, x, y, 0x87ceff);
+		ft_putendl("too many arguments");
+		exit(0);
 	}
-	return (0);
-}
-
-int	main()
-{
-	t_st e;
-
-	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, 600, 600, "mlx 42");
-//	init_struct(&e);
-	mlx_mouse_hook(e.win, my_mouse_funct, &e);
-	mlx_key_hook(e.win, my_key_funct, &e);
-	mlx_loop(e.mlx);
+	if ((check_file(av[1])) == 1)
+		ft_putendl("Success!");
+	else
+		ft_putendl("Invalid File");
+//	mlx_key_hook(e.win, my_key_funct, 0);
+//	mlx_loop(e.mlx);
 	return (0);
 }

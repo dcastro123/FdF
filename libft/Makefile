@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dcastro- <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/10 15:23:50 by dcastro-          #+#    #+#              #
-#    Updated: 2017/04/10 16:58:33 by dcastro-         ###   ########.fr        #
+#    Updated: 2017/07/12 17:36:24 by dcastro-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-
-CMPFLAGS = -Wall -Wextra -Werror -c
+CMP = gcc -c -Wall -Wextra -Werror
 
 NAME = libft.a
 
-HEAD = libft.h
+INC = -I inc/
+
+SRCDIR = srcs/
 
 SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 	  ft_isprint.c ft_memalloc.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
@@ -29,14 +29,17 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 	  ft_strnew.c ft_strnstr.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 	  ft_tolower.c ft_toupper.c ft_strrchr.c ft_strsplit.c ft_itoa.c \
 	  ft_spacecheck.c ft_wdcount.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
-	  ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_wdlen.c ft_range.c ft_list_size.c \
+	  ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_wdlen.c ft_range.c ft_list_size.c\
+	  get_next_line.c
+
+SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME) :
-	@$(CC) $(CMPFLAGS)  $(SRC) -I$(HEAD)
+	@$(CMP) $(SRCS) $(INC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 

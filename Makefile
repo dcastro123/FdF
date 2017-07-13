@@ -3,27 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dcastro- <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/18 19:27:32 by dcastro-          #+#    #+#              #
-#    Updated: 2017/07/03 17:38:25 by dcastro-         ###   ########.fr        #
+#    Updated: 2017/07/12 21:59:16 by dcastro-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-CC = gcc
+CC = gcc -Wall -Werror -Wextra
 
-SRCS = srcs/main.c
+SRCS = srcs/main.c srcs/check_valid.c
+SRCDIR = srcs/
 
 OBJ = $(SRCS:.c=.o)
+SRC = $(addprefix $(SRCDIR), $(SRCS))
 
-INCLUDE = -I includes/fdf.h -L ./minilibx_macos -lmlx -framework OpenGL -framework AppKit
+INCLUDE = -L libft/ -lft -L ./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 $(NAME): $(OBJ) 
-	make all -C minilibx_macos
+	make -C minilibx_macos
+	make -C libft
 	$(CC) $(INCLUDE) $(OBJ) -o $(NAME)
 
 clean:
