@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 16:25:10 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/12 21:42:18 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/13 22:00:08 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ typedef struct	s_env
 	void	*mlx;
 	void	*win;
 //	t_point point;
-	int		**something;
+	int		**store_arr;
 	int 	mid;
 	int 	slope;
 	int		dist;
 	int		width;
 	int		height;
+	int		z_max;
+	int 	z_min;
 }				t_env;
 
 typedef struct s_points
@@ -47,5 +49,8 @@ typedef struct s_points
 	int y;
 }				t_point;
 
-int check_file(char *av);
+void	init_estruct(t_env *e);
+
+int check_file(char *av, t_env *e);
+void	store_points(t_env *e, char *av);
 #endif

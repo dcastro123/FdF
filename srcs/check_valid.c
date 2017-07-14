@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 14:36:09 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/12 23:02:41 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/13 19:37:11 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ static int get_width(char **str)
 	return (i);
 }
 
-static int check_values(int fd)
+static int check_values(int fd, t_env *e)
 {
+	int w_first;
 	int w;
-	int w2;
 	int i;
 	char **tmp;
 	char *line;
 
+	w_first = 0;
 	w = 0;
-	w2 = 0;
 	line = NULL;
 	i = 0;
 	if (get_next_line(fd, &line))
@@ -63,8 +63,9 @@ static int check_values(int fd)
 		}
 		if (!(tmp = ft_strsplit(line, ' ')))
 			return (0);
-		if ((!(w = get_width(tmp))))
+		if ((!(w_first = get_width(tmp))))
 			return (0);
+		e->height++;
 		ft_strdel(&line);
 		free(tmp);
 	}
@@ -83,14 +84,18 @@ static int check_values(int fd)
 		}
 		if (!(tmp = ft_strsplit(line, ' ')))
 			return (0);
-		if ((w2 = get_width(tmp)) != w)
+		if ((w = get_width(tmp)) != w_first)
 			return (0);
+		else
+			e->width = w;
+		e->height++;
 		free(tmp);
 		ft_strdel(&line);
 	}
+	close(fd);
 	return (1);
 }
-int check_file(char *av)
+int check_file(char *av, t_env *e)
 {
 	int fd;
 
@@ -98,7 +103,7 @@ int check_file(char *av)
 		return (0);
 	if ((fd = open(av, O_RDONLY)) < 0)
 		return (0);
-	if (!(check_values(fd)))
+	if (!(check_values(fd, e)))
 		return (0);
 	return (1);
 }
