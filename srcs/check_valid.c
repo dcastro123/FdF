@@ -6,28 +6,11 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 14:36:09 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/13 19:37:11 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/14 22:53:41 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-// static int line_check(char *s)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	printf("here: %s\n", s);
-// 	while (s[i])
-// 	{
-// 		if ((ft_isalpha(s[i])))
-// 			return (0);
-// 		if (s[i] == '-' &&  ((s[ + 1] <= '0' || s[i + 1] >= '9')))
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
 
 static int get_width(char **str)
 {
@@ -39,59 +22,74 @@ static int get_width(char **str)
 	return (i);
 }
 
+static int first_check(char *line)
+{
+	int i;
+	int w;
+	char **tmp;
+
+	i = 0;
+	while (line[i])
+	{	
+		if ((ft_isalpha(line[i])))
+			return (0);
+		if (line[i] == '-' &&  ((line[ + 1] <= '0' || line[i + 1] >= '9')))
+			return (0);
+		i++;
+	}
+	if (!(tmp = ft_strsplit(line, ' ')))
+		return (0);
+	if ((!(w = get_width(tmp))))
+		return (0);
+	free(tmp);
+	return (w);
+}
+
+static int next_check(char *line)
+{
+	int i;
+	int w2;
+	char **tmp;
+
+	i = -1;
+	while (line[++i])
+	{	
+		if ((ft_isalpha(line[i])))
+			return (0);
+		if (line[i] == '-' &&  ((line[ + 1] <= '0' || line[i + 1] >= '9')))
+			return (0);
+	}
+	if (!(tmp = ft_strsplit(line, ' ')))
+		return (0);
+	if (!(w2 = get_width(tmp)))
+		return (0);
+	free(tmp);
+	return (w2);
+}
 static int check_values(int fd, t_env *e)
 {
 	int w_first;
 	int w;
-	int i;
-	char **tmp;
 	char *line;
 
-	w_first = 0;
-	w = 0;
 	line = NULL;
-	i = 0;
 	if (get_next_line(fd, &line))
 	{
-		while (line[i])
-		{	
-			if ((ft_isalpha(line[i])))
-				return (0);
-			if (line[i] == '-' &&  ((line[ + 1] <= '0' || line[i + 1] >= '9')))
-				return (0);
-			i++;
-		}
-		if (!(tmp = ft_strsplit(line, ' ')))
-			return (0);
-		if ((!(w_first = get_width(tmp))))
+		if ((w_first = first_check(line)) == 0)
 			return (0);
 		e->height++;
 		ft_strdel(&line);
-		free(tmp);
 	}
 	else
 		return (0);
 	while (get_next_line(fd, &line))
 	{
-		i = 0;
-		while (line[i])
-		{	
-			if ((ft_isalpha(line[i])))
-				return (0);
-			if (line[i] == '-' &&  ((line[ + 1] <= '0' || line[i + 1] >= '9')))
-				return (0);
-			i++;
-		}
-		if (!(tmp = ft_strsplit(line, ' ')))
+		if ((w = next_check(line)) != w_first)
 			return (0);
-		if ((w = get_width(tmp)) != w_first)
-			return (0);
-		else
-			e->width = w;
 		e->height++;
-		free(tmp);
 		ft_strdel(&line);
 	}
+	e->width = w;
 	close(fd);
 	return (1);
 }

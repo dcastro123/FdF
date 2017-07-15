@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 18:43:20 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/13 22:00:56 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/14 22:32:00 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	if ((check_file(av[1], &e)) == 1)
+	{
+		printf("s\n");
 		store_points(&e, av[1]);
+	}
 	else
 		ft_putendl("Invalid File");
 	// start_draw(&e, &coords);
