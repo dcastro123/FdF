@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 13:09:02 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/14 23:09:31 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/15 18:55:32 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	find_z(t_env *e, int y)
 	}
 }
 
-static void store(t_env *e, char *line, int i)
+static void zstore(t_env *e, char *line, int i)
 {
 	int k;
 	char **tmp;
@@ -59,7 +59,7 @@ void	store_points(t_env *e, char *av)
 		return (ft_putendl("bad malloc"));
 	while (get_next_line(fd, &line))
 	{
-		store(e, line, i);
+		zstore(e, line, i);
 		find_z(e, i);
 		i++;
 		ft_strdel(&line);
