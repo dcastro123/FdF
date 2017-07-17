@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 13:09:02 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/15 18:55:32 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/17 04:06:54 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void zstore(t_env *e, char *line, int i)
 
 	k = -1;
 	if (!(tmp = ft_strsplit(line, ' ')))
-		return (ft_putendl("bad lines"));
+		error_msg("bad strsplit");
 	e->store_arr[i] = (int*)malloc(sizeof(int) * (e->width + 1));
 	while (++k < e->width)
 		e->store_arr[i][k] = ft_atoi(&tmp[k][0]);
@@ -54,9 +54,9 @@ void	store_points(t_env *e, char *av)
 	i = 0;
 	line = NULL;
 	if ((fd = open(av, O_RDONLY)) < 0)
-		return (ft_putendl("bad file"));
+		error_msg("bad fd read");
 	if (!(e->store_arr = (int**)malloc(sizeof(int*) * (e->height + 1))))
-		return (ft_putendl("bad malloc"));
+		error_msg("bad malloc");
 	while (get_next_line(fd, &line))
 	{
 		zstore(e, line, i);

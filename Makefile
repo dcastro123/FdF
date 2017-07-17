@@ -6,7 +6,7 @@
 #    By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/18 19:27:32 by dcastro-          #+#    #+#              #
-#    Updated: 2017/07/15 13:50:38 by dcastro-         ###   ########.fr        #
+#    Updated: 2017/07/17 02:46:30 by dcastro-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = fdf
 
 CC = gcc -Wall -Werror -Wextra -g
 
-SRCS = srcs/main.c srcs/check_valid.c srcs/storage.c srcs/init_env.c
+SRCS = srcs/main.c srcs/check_valid.c srcs/storage.c srcs/init_env.c\
+		srcs/set_points.c srcs/start_draw.c srcs/rotate.c
+
 SRCDIR = srcs/
 
 OBJ = $(SRCS:.c=.o)

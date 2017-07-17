@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 14:36:09 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/15 13:58:00 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/17 04:05:59 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ int check_file(char *av, t_env *e)
 	int fd;
 
 	if (!av)
-		return (0);
+		error_msg("no argument");
 	if ((fd = open(av, O_RDONLY)) < 0)
-		return (0);
+		error_msg("bad fd");
 	if (!(check_values(fd, e)))
-		return (0);
+		error_msg("bad file values");
 	return (1);
 }
