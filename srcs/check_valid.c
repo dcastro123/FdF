@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 14:36:09 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/17 20:23:41 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/17 23:52:11 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ static	int	check_values(int fd, t_env *e)
 	}
 	e->width = w;
 	close(fd);
+	(e->height < 2 || e->width < 2) ? error_msg("invalid") : 0;
 	return (1);
 }
 
