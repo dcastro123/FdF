@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 00:39:30 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/17 03:35:08 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/17 19:55:45 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	rot_z(t_env *e)
 {
-	int i;
-	int j;
-	float x;
-	float y;
+	int		i;
+	int		j;
+	float	x;
+	float	y;
 
-	i  = -1;
+	i = -1;
 	while (++i < e->height)
 	{
 		j = -1;
@@ -35,10 +35,10 @@ void	rot_z(t_env *e)
 
 void	rot_y(t_env *e)
 {
-	int i;
-	int j;
-	float x;
-	float z;
+	int		i;
+	int		j;
+	float	x;
+	float	z;
 
 	i = -1;
 	while (++i < e->height)
@@ -56,10 +56,10 @@ void	rot_y(t_env *e)
 
 void	rot_x(t_env *e)
 {
-	int i;
-	int j;
-	float z;
-	float y;
+	int		i;
+	int		j;
+	float	z;
+	float	y;
 
 	i = -1;
 	while (++i < e->height)

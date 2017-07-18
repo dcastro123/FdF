@@ -6,16 +6,16 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 13:09:02 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/17 04:06:54 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/17 20:01:28 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	find_z(t_env *e, int y)
+static	void	find_z(t_env *e, int y)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (++i < e->width)
 	{
@@ -30,10 +30,10 @@ static void	find_z(t_env *e, int y)
 	}
 }
 
-static void zstore(t_env *e, char *line, int i)
+static	void	zstore(t_env *e, char *line, int i)
 {
-	int k;
-	char **tmp;
+	int		k;
+	char	**tmp;
 
 	k = -1;
 	if (!(tmp = ft_strsplit(line, ' ')))
@@ -45,11 +45,11 @@ static void zstore(t_env *e, char *line, int i)
 	free(tmp);
 }
 
-void	store_points(t_env *e, char *av)
+void			store_points(t_env *e, char *av)
 {
-	char *line;
-	int i;
-	int fd;
+	char	*line;
+	int		i;
+	int		fd;
 
 	i = 0;
 	line = NULL;

@@ -6,16 +6,16 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/15 19:11:36 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/17 04:33:04 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/17 19:52:11 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
- 
- #include "../includes/fdf.h"
+
+#include "../includes/fdf.h"
 
 void	draw_grad_diag(t_env *e)
 {
-	float i;
-	float temp;
+	float	i;
+	float	temp;
 
 	i = e->y1;
 	e->delta = fabsf(e->slope);
@@ -41,8 +41,8 @@ void	draw_grad_diag(t_env *e)
 
 void	draw_sharpdiag(t_env *e)
 {
-	float i;
-	float temp;
+	float	i;
+	float	temp;
 
 	i = e->x1;
 	e->delta = fabsf(e->run / e->rise);
@@ -68,7 +68,7 @@ void	draw_sharpdiag(t_env *e)
 
 void	straightdraw(t_env *e)
 {
-	float temp;
+	float	temp;
 
 	temp = 0;
 	if (e->y2 < e->y1)
@@ -86,8 +86,8 @@ void	straightdraw(t_env *e)
 
 void	draw_right(t_env *e)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < e->height)
@@ -102,7 +102,7 @@ void	draw_right(t_env *e)
 			{
 				e->slope = e->rise / e->run;
 				e->offset = 0;
-				e->adjust = e->slope >= 0 ? 1: -1;
+				e->adjust = e->slope >= 0 ? 1 : -1;
 				e->threshold = 0.5;
 				if (e->slope <= 1 && e->slope >= -1)
 					draw_grad_diag(e);
@@ -131,7 +131,7 @@ void	draw_down(t_env *e)
 			{
 				e->slope = e->rise / e->run;
 				e->offset = 0;
-				e->adjust = e->slope >= 0 ? 1: -1;
+				e->adjust = e->slope >= 0 ? 1 : -1;
 				e->threshold = 0.5;
 				if (e->slope <= 1 && e->slope >= -1)
 					draw_grad_diag(e);

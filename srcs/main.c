@@ -6,7 +6,7 @@
 /*   By: dcastro- <dcastro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 18:43:20 by dcastro-          #+#    #+#             */
-/*   Updated: 2017/07/17 04:04:52 by dcastro-         ###   ########.fr       */
+/*   Updated: 2017/07/17 20:20:22 by dcastro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	error_msg(char *str)
 	exit(0);
 }
 
-int	my_key_funct(int keycode)
+int		my_key_funct(int keycode)
 {
 	ft_putstr("Key Event: ");
 	ft_putendl(ft_itoa(keycode));
@@ -27,9 +27,9 @@ int	my_key_funct(int keycode)
 	return (0);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
-	t_env e;
+	t_env	e;
 
 	init_estruct(&e);
 	if (ac != 2)
@@ -37,6 +37,8 @@ int	main(int ac, char **av)
 	check_file(av[1], &e);
 	store_points(&e, av[1]);
 	setup_env(&e);
+	draw_right(&e);
+	draw_down(&e);
 	mlx_key_hook(e.win, my_key_funct, &e);
 	mlx_loop(e.mlx);
 	return (0);
